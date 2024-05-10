@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ghscareplus/constants/color.dart';
-import 'package:ghscareplus/contact/contactmobile.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -12,6 +11,7 @@ class ContactUs extends StatefulWidget {
 }
 
 class _ContactUsState extends State<ContactUs> {
+  
   List<String> departments = [
     "Biochemistry",
     "Haematology",
@@ -48,8 +48,7 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return width > 1000
-        ? Container(
+    return Container(
             decoration: BoxDecoration(
               //shape: BoxShape.circle,
               gradient: radiantColor,
@@ -130,7 +129,7 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                     Expanded(
                         child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -181,7 +180,7 @@ class _ContactUsState extends State<ContactUs> {
                     )),
                     Expanded(
                         child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -232,7 +231,7 @@ class _ContactUsState extends State<ContactUs> {
                     )),
                     Expanded(
                         child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -280,7 +279,7 @@ class _ContactUsState extends State<ContactUs> {
                     )),
                     Expanded(
                         child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -323,7 +322,6 @@ class _ContactUsState extends State<ContactUs> {
                     ))
                   ],
                 )),
-          )
-        : const ContactUsMobile();
+          );
   }
 }

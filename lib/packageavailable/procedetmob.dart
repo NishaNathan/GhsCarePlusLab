@@ -77,9 +77,11 @@ class _PriceDetMobState extends State<PriceDetMob> {
       ],
     ];
     return SizedBox(
-      height: width < 600
-          ? MediaQuery.of(context).size.height * 2.35
-          : MediaQuery.of(context).size.height * 2.1,
+      height: (width >= 375 && width < 390)
+          ? MediaQuery.of(context).size.height * 3.3
+          : (width >= 390 && width < 400)
+              ? MediaQuery.of(context).size.height * 3.5
+              : MediaQuery.of(context).size.height * 2.5,
       child: Column(
         children: [
           Text(

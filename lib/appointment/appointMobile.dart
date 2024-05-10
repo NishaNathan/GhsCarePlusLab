@@ -18,31 +18,9 @@ class AppointmentMobile extends StatefulWidget {
 }
 
 class _AppointmentMobileState extends State<AppointmentMobile> {
-  bool isSelectedDoctor = false;
-  bool isSelectedDept = false;
-  //bool isHovered = false;
-
-  String? doctorselectedValue;
-
   final AppointmentController appointCtrl = Get.put(AppointmentController());
 
   List<bool> isHoveredList = List.generate(3, (index) => false);
-
-  final List<String> departmentlist = [
-    'Department 1',
-    'Department 2',
-    'Department 3',
-    'Department 4',
-    'Department 5',
-  ];
-
-  final List<String> doctorlist = [
-    'Doctor 1',
-    'Doctor 2',
-    'Doctor 3',
-    'Doctor 4',
-    'Doctor 5',
-  ];
 
   final List<Map<String, dynamic>> appointmentList = [
     {
@@ -62,17 +40,10 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
     },
   ];
 
-  /* @override
-  void initState() {
-    super.initState();
-    setState(() {
-      appointCtrl.testCtrl.text = "";
-    });
-  } */
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    bool isHoverAlertOK = false;
     return Column(
       children: [
         Container(
@@ -104,127 +75,138 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
               ),
               Form(
                   child: Padding(
-                padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 10.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
                 child: Column(
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextBoxWidget(
-                         cursorColor: Colors.white,
-                      hintTextColor: Colors.grey.shade500,
-                      focusedborderSide: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.white70,
-                      )),
-                      enabledBorderColor: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.white70,
-                      )),
+                    TextFormField(
                       controller: appointCtrl.nameCtrl,
-                      //width: 280,
-                      fillColor: Colors.transparent,
-                      hintText: 'Your Name',
-                      cursorHeight: 25,
-                      fontColor: Colors.white,
-                      //maxLength: 25,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.white, // Colors.white,
+                      cursorHeight: 20,
+                      //maxLength: maxLength,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(25),
+                        LengthLimitingTextInputFormatter(50),
                         FilteringTextInputFormatter.allow(
                             RegExp(r'[a-zA-Z\s]+')),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextBoxWidget(
-                      hintTextColor: Colors.grey.shade500,
-                      focusedborderSide: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.white70,
-                      )),
-                      enabledBorderColor: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.white70,
-                      )),
-                      controller: appointCtrl.phoneNumCtrl,
-                      cursorColor: Colors.white,
-                      //width: 280,
-                      fillColor: Colors.transparent,
-                      hintText: 'Your Phone',
-                      cursorHeight: 25,
-                      fontColor: Colors.white,
-                      // maxLength: 10,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(10),
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextBoxWidget(
-                      cursorColor: Colors.white,
-                      hintTextColor: Colors.grey.shade500,
-                      focusedborderSide: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.white70,
-                      )),
-                      enabledBorderColor: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                        color: Colors.white70,
-                      )),
-                      controller: appointCtrl.phoneNumCtrl,
-                      width: 280,
-                      fillColor: Colors.transparent,
-                      hintText: 'Your E-mail',
-                      cursorHeight: 25,
-                      fontColor: Colors.white,
-                      // maxLength: 10,
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(10),
-                        /*  FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]')), */
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: DropDownWidget(
-                        dropdownTxt: doctorselectedValue ?? "Select test",
-                        items: doctorlist.map((String value) {
-                          return PopupMenuItem<String>(
-                            value: value,
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width *
-                                  0.184, // Set width of the menu item
-                              child: ListTile(
-                                // Use ListTile for consistent styling
-                                title: Text(value,
-                                    style:
-                                        const TextStyle(color: Colors.black)),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        dropdownTextColor: doctorselectedValue != null
-                            ? Colors.white
-                            : Colors.white,
-                        onSelected: (String newValue) {
-                          setState(() {
-                            doctorselectedValue = newValue;
-                          });
-                        },
-                        selecteddropdownTextColor: Colors.white,
+
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hintText: "Enter Name",
+                        hintStyle: TextStyle(
+                            color: Colors.grey, //Colors.grey.shade500,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white70,
+                        )),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white70,
+                        )),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
+                    TextFormField(
+                      controller: appointCtrl.emailCtrl,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.white, // Colors.white,
+                      cursorHeight: 20,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(
+                            RegExp(r'^[a-zA-Z0-9_@.-]+')),
+                      ],
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hintText: "Enter E-mail ID",
+                        hintStyle: TextStyle(
+                            color: Colors.grey, //Colors.grey.shade500,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white70,
+                        )),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white70,
+                        )),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                        controller: appointCtrl.phoneNumCtrl,
+                        style: const TextStyle(color: Colors.white),
+                        cursorColor: Colors.white, // Colors.white,
+                        cursorHeight: 20,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(10),
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                        ],
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.transparent,
+                          hintText: "Enter Mobile Number",
+                          hintStyle: TextStyle(
+                              color: Colors.grey, //Colors.grey.shade500,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: Colors.white70,
+                          )),
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: Colors.white70,
+                          )),
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: appointCtrl.alterPhoneCtrl,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.white, // Colors.white,
+                      cursorHeight: 20,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(10),
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hintText: "Enter Alternate Mobile Number",
+                        hintStyle: TextStyle(
+                            color: Colors.grey, //Colors.grey.shade500,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white70,
+                        )),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white70,
+                        )),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     MutltiLineTextField(
+                      multitextController: appointCtrl.messageCtrl,
                       height: MediaQuery.of(context).size.height * 0.2,
                       hintText: 'Enter Your Message',
-                      maxLength: 70,
+                      maxLength: 50,
                       width: MediaQuery.of(context).size.width,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(50),
@@ -236,15 +218,16 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
                       height: 10,
                     ),
                     CommonButtonWidget(
+                      height: 50,
                       backgroundColor: buttonColor,
                       borderColor: buttonColor,
                       borderRadius: BorderRadius.circular(5.0),
                       btnText: 'Make an Appointment',
                       foregroundColor: Colors.white,
-                      onPressed: () {
+                      onPressed: () async {
                         String errorMessage = appointCtrl.validateAppointment();
                         if (errorMessage.isEmpty) {
-                          // Display process indicator
+                          //Navigator.of(context).pop();
                           showDialog(
                             context: context,
                             barrierDismissible: false,
@@ -254,67 +237,203 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
                               );
                             },
                           );
-                          /* // Simulate sending email (replace with actual email sending logic)
-                                  bool emailSent = await popupCtrl.sendEmail(
-                                  selectedTests: popupCtrl.selectedTests,
-                                  email: popupCtrl.emailCntrl.text,
-                                  name: popupCtrl.username.text,
-                                  ); */
-                          Navigator.of(context).pop();
-                          // if (emailSent) {
-                          // Display success alert
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text('Success'),
-                                content: const Text('Booked successfully.'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-                                    child: const Text('OK'),
+                          bool validateEmailResult =
+                              await appointCtrl.sendAppointUserEmail(
+                                  name: appointCtrl.nameCtrl.text,
+                                  mobile: appointCtrl.phoneNumCtrl.text,
+                                  altmobno: appointCtrl.alterPhoneCtrl.text,
+                                  email: appointCtrl.emailCtrl.text,
+                                  msg: appointCtrl.messageCtrl.text);
+                          if (validateEmailResult) {
+                            Navigator.of(context).pop();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: Colors.white,
+                                  title: Center(
+                                    child: Text(
+                                      'Success'.toUpperCase(),
+                                      style: TextStyle(
+                                          color: textColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
-                                ],
-                              );
-                            },
-                          );
-                          // Clear form fields and checkboxes after successful submission
-                          /*  popupCtrl.clearCheckboxes();
-                                  popupCtrl.emailCntrl.clear();
-                                  popupCtrl.username.clear(); */
-                          /* } else {
-                                  // Display error message
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text('Error'),
-                                        content: const Text('Failed to send email.'),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            onPressed: () =>
-                                                Navigator.of(context).pop(),
-                                            child: const Text('OK'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                } */
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                          width: 200,
+                                          height: 100,
+                                          'assets/images/successicongreen.gif'),
+                                      const Text('Mail sent successfully.'),
+                                    ],
+                                  ),
+                                  actions: <Widget>[
+                                    Center(
+                                      child: MouseRegion(
+                                        onEnter: (_) {
+                                          setState(() {
+                                            isHoverAlertOK = true;
+                                          });
+                                        },
+                                        onExit: (_) {
+                                          setState(() {
+                                            isHoverAlertOK = false;
+                                          });
+                                        },
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: isHoverAlertOK
+                                                  ? const Color.fromRGBO(
+                                                      1, 83, 143, 1)
+                                                  : Colors.white,
+                                              foregroundColor: isHoverAlertOK
+                                                  ? Colors.white
+                                                  : const Color.fromRGBO(
+                                                      1, 83, 143, 1),
+                                              side:
+                                                  BorderSide(color: textColor),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0))),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                          child: const Text('OK'),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            appointCtrl.nameCtrl.clear();
+                            appointCtrl.emailCtrl.clear();
+                            appointCtrl.phoneNumCtrl.clear();
+                            appointCtrl.alterPhoneCtrl.clear();
+                            appointCtrl.messageCtrl.clear();
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: Colors.white,
+                                  title: Center(
+                                    child: Text(
+                                      'Error'.toUpperCase(),
+                                      style: TextStyle(
+                                          color: textColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                          width: 200,
+                                          height: 100,
+                                          'assets/images/erroricon.gif'),
+                                      const Text('Failed to send email'),
+                                    ],
+                                  ),
+                                  actions: <Widget>[
+                                    Center(
+                                      child: MouseRegion(
+                                        onEnter: (_) {
+                                          setState(() {
+                                            isHoverAlertOK = true;
+                                          });
+                                        },
+                                        onExit: (_) {
+                                          setState(() {
+                                            isHoverAlertOK = false;
+                                          });
+                                        },
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: isHoverAlertOK
+                                                  ? const Color.fromRGBO(
+                                                      1, 83, 143, 1)
+                                                  : Colors.white,
+                                              foregroundColor: isHoverAlertOK
+                                                  ? Colors.white
+                                                  : const Color.fromRGBO(
+                                                      1, 83, 143, 1),
+                                              side:
+                                                  BorderSide(color: textColor),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0))),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                          child: const Text('OK'),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         } else {
-                          // Display error message
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: const Text('Error'),
-                                content: Text(errorMessage),
+                                backgroundColor: Colors.white,
+                                title: Center(
+                                  child: Text(
+                                    'Error'.toUpperCase(),
+                                    style: TextStyle(
+                                        color: textColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Image.asset(
+                                        width: 200,
+                                        height: 100,
+                                        'assets/images/erroricon.gif'), // Success GIF
+
+                                    Text(errorMessage), // Content of the dialog
+                                  ],
+                                ),
                                 actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-                                    child: const Text('OK'),
+                                  Center(
+                                    child: MouseRegion(
+                                      onEnter: (_) {
+                                        setState(() {
+                                          isHoverAlertOK = true;
+                                        });
+                                      },
+                                      onExit: (_) {
+                                        setState(() {
+                                          isHoverAlertOK = false;
+                                        });
+                                      },
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: isHoverAlertOK
+                                                ? const Color.fromRGBO(
+                                                    1, 83, 143, 1)
+                                                : Colors.white,
+                                            foregroundColor: isHoverAlertOK
+                                                ? Colors.white
+                                                : const Color.fromRGBO(
+                                                    1, 83, 143, 1),
+                                            side: BorderSide(color: textColor),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(0))),
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: const Text('OK'),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               );
@@ -330,9 +449,11 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
           ),
         ),
         SizedBox(
-          height: (width > 700 && width < 1000)
-              ? MediaQuery.of(context).size.height * 0.5
-              : MediaQuery.of(context).size.height * 0.6,
+          height: (width >= 375 && width < 390)
+              ? MediaQuery.of(context).size.height * 0.9
+              : (width >= 390 && width < 400)
+                  ? MediaQuery.of(context).size.height * 0.66
+                  : MediaQuery.of(context).size.height * 0.6,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10, 10),
             child: Column(
@@ -396,8 +517,10 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
                                           : textColor,
                                       size: 50,
                                     ),
-                                    const SizedBox(
-                                      width: 20.0,
+                                    SizedBox(
+                                      width: (width >= 375 && width < 390)
+                                          ? 10.0
+                                          : 20.0,
                                     ),
                                     Column(
                                       crossAxisAlignment:
@@ -446,13 +569,4 @@ class _AppointmentMobileState extends State<AppointmentMobile> {
       ],
     );
   }
-
-  /*  Future displayTimePicker(BuildContext context) async {
-    var time = await showTimePicker(context: context, initialTime: timeOfDay);
-    if (time != null) {
-      setState(() {
-        timeController.text = "${time.hour}:${time.minute}";
-      });
-    }
-  } */
 }

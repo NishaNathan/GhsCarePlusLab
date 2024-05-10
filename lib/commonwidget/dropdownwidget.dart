@@ -9,14 +9,14 @@ class DropDownWidget extends StatefulWidget {
   final Color? selecteddropdownTextColor;
 
   const DropDownWidget({
-    Key? key,
+    super.key,
     required this.items,
     this.value,
     required this.onSelected,
     required this.dropdownTxt,
     this.dropdownTextColor,
     this.selecteddropdownTextColor,
-  }) : super(key: key);
+  });
 
   @override
   State<DropDownWidget> createState() => _DropDownWidgetState();

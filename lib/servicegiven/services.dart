@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ghscareplus/constants/color.dart';
 import 'package:ghscareplus/constants/stringres.dart';
-import 'package:ghscareplus/servicegiven/servicesMobile.dart';
 
 class ServiceAvailable extends StatefulWidget {
   const ServiceAvailable({super.key});
@@ -55,12 +54,9 @@ class _ServiceAvailableState extends State<ServiceAvailable> {
         'desc': servicedesc
       },
     ];
-    return width > 600
-        ? Container(
+    return Container(
             padding: const EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
-            height: (width > 700 && width < 1000)
-                ? MediaQuery.of(context).size.height * 1
-                : MediaQuery.of(context).size.height * 1,
+            height: MediaQuery.of(context).size.height * 1,
             width: MediaQuery.of(context).size.width,
             child: IntrinsicHeight(
               child: Column(
@@ -117,8 +113,8 @@ class _ServiceAvailableState extends State<ServiceAvailable> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      width: 100.0,
-                                      height: 100.0,
+                                      width: MediaQuery.of(context).size.width * 0.1,
+                                      height: MediaQuery.of(context).size.height * 0.1,
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           gradient: isHoverService[index]
@@ -171,7 +167,7 @@ class _ServiceAvailableState extends State<ServiceAvailable> {
                 ],
               ),
             ),
-          )
-        : const ServiceMobile();
+          );
+      
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ghscareplus/commonwidget/buttonwidget.dart';
 import 'package:ghscareplus/constants/color.dart';
@@ -78,8 +77,7 @@ class _PriceDetailsState extends State<PriceDetails> {
       ],
     ];
 
-    return width > 1000
-        ? Container(
+    return Container(
             padding: const EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0),
             height: MediaQuery.of(context).size.height * 0.9,
             width: MediaQuery.of(context).size.width,
@@ -246,7 +244,6 @@ class _PriceDetailsState extends State<PriceDetails> {
                 ),
               ],
             ),
-          )
-        : const PriceDetMob();
+          );
   }
 }

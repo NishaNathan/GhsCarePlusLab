@@ -19,10 +19,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  List<Map<String, dynamic>> dataList = [
-    {'testname': 'Blood Group & type test'},
-    {'testname': 'Blood Cultire Test'},
-  ];
+  
 
   String? doctorselectedValue;
 
@@ -62,7 +59,7 @@ class _LandingPageState extends State<LandingPage> {
             labelStyle: const TextStyle(fontWeight: FontWeight.w900),
             bgColor: buttonColor,
             onPressed: () {
-              _showCheckBoxDialog(context, dataList);
+              _showCheckBoxDialog(context);
             },
           ),
         ),
@@ -71,11 +68,10 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _showCheckBoxDialog(
-      BuildContext context, List<Map<String, dynamic>> dataList) {
+      BuildContext context) {
     final PopUpController popupCtrl = Get.put(PopUpController());
     bool isHoverSubmit = false;
     bool isHoverPopAlert = false;
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -336,6 +332,7 @@ class _LandingPageState extends State<LandingPage> {
                                                   String errorMessage =
                                                       popupCtrl
                                                           .validateInputs();
+
                                                   if (errorMessage.isEmpty) {
                                                     showDialog(
                                                       context: context,
@@ -346,7 +343,6 @@ class _LandingPageState extends State<LandingPage> {
                                                           child:
                                                               CircularProgressIndicator(
                                                             color: textColor,
-                                                            
                                                           ),
                                                         );
                                                       },
@@ -397,7 +393,7 @@ class _LandingPageState extends State<LandingPage> {
                                                                 Image.asset(
                                                                     width: 200,
                                                                     height: 100,
-                                                                    'assets/images/successicon.gif'),
+                                                                    'assets/images/successicongreen.gif'),
                                                                 const Text(
                                                                     'Mail sent successfully.'),
                                                               ],
@@ -445,9 +441,15 @@ class _LandingPageState extends State<LandingPage> {
                                                                         shape: RoundedRectangleBorder(
                                                                             borderRadius:
                                                                                 BorderRadius.circular(0))),
-                                                                    onPressed: () =>
-                                                                        Navigator.of(context)
-                                                                            .pop(),
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                    },
                                                                     child:
                                                                         const Text(
                                                                             'OK'),
@@ -584,10 +586,9 @@ class _LandingPageState extends State<LandingPage> {
                                                               Image.asset(
                                                                   width: 200,
                                                                   height: 100,
-                                                                  'assets/images/erroricon.gif'), // Success GIF
-
+                                                                  'assets/images/erroricon.gif'),
                                                               Text(
-                                                                  errorMessage), // Content of the dialog
+                                                                  errorMessage),
                                                             ],
                                                           ),
                                                           actions: <Widget>[

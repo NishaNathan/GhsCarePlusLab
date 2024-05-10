@@ -12,7 +12,6 @@ class AboutMobileWidget extends StatefulWidget {
 }
 
 class _AboutMobileWidgetState extends State<AboutMobileWidget> {
-  
   final List<Map<String, dynamic>> gridList = [
     {
       'count': '3000',
@@ -30,14 +29,18 @@ class _AboutMobileWidgetState extends State<AboutMobileWidget> {
       'desc': 'years of experience'
     },
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: (width > 700 && width < 1000)
-          ? MediaQuery.of(context).size.height * 1.03
-          : MediaQuery.of(context).size.height * 1,
+      height: (width >= 375 && width < 390)
+          ? MediaQuery.of(context).size.height * 1.37
+          : (width >= 390 && width < 400)
+              ? MediaQuery.of(context).size.height * 1.1
+              : (width >= 410 && width < 430)
+                  ? MediaQuery.of(context).size.height * 1
+                  : MediaQuery.of(context).size.height * 1.2,
       child: Column(
         children: [
           Text(
@@ -48,15 +51,21 @@ class _AboutMobileWidgetState extends State<AboutMobileWidget> {
           const SizedBox(
             height: 10.0,
           ),
-          Text(
-            aboutheading,
-            style: const TextStyle(
-                color: Colors.black, fontSize: 30, fontWeight: FontWeight.w900),
+          SizedBox(
+            width: width,
+            child: Text(
+              textAlign: TextAlign.center,
+              aboutheading,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900),
+            ),
           ),
           const SizedBox(
             height: 10,
           ),
-          SizedBox(child: Image.asset(aboutimage, fit: BoxFit.cover)),
+          Image.asset(testlababout, fit: BoxFit.cover),
           const SizedBox(
             height: 10,
           ),
@@ -92,7 +101,7 @@ class _AboutMobileWidgetState extends State<AboutMobileWidget> {
                             child: FaIcon(
                               gridList[0]['icon'],
                               color: textColor,
-                              size: 30,
+                              size: 40,
                             ),
                           ),
                           Padding(

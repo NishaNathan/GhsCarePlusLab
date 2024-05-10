@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedElevationButton extends StatefulWidget {
+  const AnimatedElevationButton({super.key});
+
   @override
   _AnimatedElevationButtonState createState() =>
       _AnimatedElevationButtonState();
@@ -36,7 +38,7 @@ class _AnimatedElevationButtonState extends State<AnimatedElevationButton>
         color: Colors.red,
         borderRadius: BorderRadius.circular(8.0),
         elevation: _animationTween.value,
-        child: SizedBox(
+        child: const SizedBox(
           width: 100,
           height: 50,
         ),

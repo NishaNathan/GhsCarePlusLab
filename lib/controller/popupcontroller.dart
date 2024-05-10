@@ -5,10 +5,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class PopUpController extends GetxController {
-  var checkboxValues = <bool>[false, false, false].obs;
+  
   List<String> selectedTests = [];
-  var isNextButtonEnabled = false.obs;
-  final RxBool isLoading = false.obs;
 
   final TextEditingController emailCntrl = TextEditingController();
   final TextEditingController username = TextEditingController();
@@ -1436,46 +1434,3 @@ class PopUpController extends GetxController {
     }
   }
 }
-
-/*  String? isValidName(String name) {
-      // Regular expression pattern for name validation
-      final nameRegex = RegExp(r'^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$');
-      return nameRegex.hasMatch(name) ? null : 'Invalid Name.';
-    }
-
-    /*   String? isValidEmail(String email) {
-      // Regular expression pattern for email validation
-      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-      return emailRegex.hasMatch(email) ? null : 'Invalid E-mail Id.';
-    }
-
-    String? isValidMobileNo(String mobileNo) {
-      // Regular expression pattern for email validation
-      final mobilenoregex = RegExp(r'[0-9]');
-      return mobilenoregex.hasMatch(mobileNo) ? null : 'Invalid Mobile Number';
-    } */
-
-    String? nameError = isValidName(username.text);
-    //String? emailError = isValidEmail(emailCntrl.text);
-    //String? mobileNumError = isValidEmail(mobnoCtrl.text);
-
-    // Display error message for checkbox
-    /* if (!areAllChecked) {
-      return 'Please select at least one test.';
-    } */
-
-    // Display error message for name
-    if (nameError != null) {
-      return 'Please enter a valid name.';
-    }
-    // Display error message for email
-    /* if (emailError != null) {
-      return 'Please enter a valid email-id.';
-    } */
-
-    /*  if (mobileNumError != null) {
-      return 'Please enter a valid Mobile Number.';
-    }
- */
-    return ''; // if all are valid
- */

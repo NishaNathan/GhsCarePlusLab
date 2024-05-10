@@ -42,12 +42,12 @@ class _DropDownSearchWidgetState extends State<DropDownSearchWidget> {
               children: [
                 TextField(
                   onChanged: _filterItems,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Search',
                     prefixIcon: Icon(Icons.search),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Expanded(

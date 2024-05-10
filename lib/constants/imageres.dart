@@ -12,6 +12,7 @@ var landPageImg = "assets/images/landingPageImg.png";
 var testlababout = "assets/images/testlababout.jpg";
 
 var popupimage = "assets/images/bloodtest.png";
+var popupimagemobile = "assets/images/bloodtestmobile.jpg";
 
 //Partners Images
 
